@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="tel1">
+        <input type="text" class=" input-sso" name="contact_tel" maxlength="10" placeholder="หมายเลขโทรศัพท์">
+        <input type="hidden" name="contact_tel_country">
+        <input type="hidden" name="contact_tel_code">
+    </div>
+</body>
+
+<script>
+    var type_from = 0;
+    var time_send_dbd;
+    var time_send_postcode;
+
+    $(".submitform").click(function() {
+
+        //-- set Data Tel code --//  
+        $(`input[name="contact_tel_country"]`).val($(`#tel1`).find(`.iti__active`).attr("data-country-code"));
+        $(`input[name="contact_tel_code"]`).val($(`#tel1`).find(`.iti__active`).find('.iti__dial-code').html());
+
+        $(`input[name="fo_tel_country"]`).val($(`#tel2`).find(`.iti__active`).attr("data-country-code"));
+        $(`input[name="fo_tel_code"]`).val($(`#tel2`).find(`.iti__active`).find('.iti__dial-code').html());
+
+        $(`input[name="tel_country"]`).val($(`#tel3`).find(`.iti__active`).attr("data-country-code"));
+        $(`input[name="tel_code"]`).val($(`#tel3`).find(`.iti__active`).find('.iti__dial-code').html());
+
+        let state = $(`#form_reg_company input[name="state"]`).val();
+
+        if (state == 'new') {
+            let contact_province = $(`#form_reg_company [name="contact_province"] option:selected`).val();
+            let contact_district = $(`#form_reg_company [name="contact_district"] option:selected`).val();
+            let contact_subdistrict = $(`#form_reg_company [name="contact_subdistrict"] option:selected`).val();
+            let contact_address = $(`#form_reg_company [name="contact_address"]`).val();
+            let contact_postcode = $(`#form_reg_company [name="contact_postcode"]`).val();
+            let contact_country1 = $(`#country1`).val();
+            let contact_country = $(`#country`).val();
+
+            if (contact_country != "") {
+                $(`#country1`).val(contact_country);
+            } else {
+                $(`#country`).val(contact_country1);
+            }
+
+            $(`#form_reg_company [name="Hcontact_province"]`).val(contact_province);
+            $(`#form_reg_company [name="Hcontact_district"]`).val(contact_district);
+            $(`#form_reg_company [name="Hcontact_subdistrict"]`).val(contact_subdistrict);
+            $(`#form_reg_company [name="Hcontact_address"]`).val(contact_address);
+            $(`#form_reg_company [name="Hcontact_postcode"]`).val(contact_postcode);
+
+
+
+
+        } else if (state == 'old') {
+            let contact_province = $(`#form_reg_company [name="contact_province_old"]`).val();
+            let contact_district = $(`#form_reg_company [name="contact_district_old"]`).val();
+            let contact_subdistrict = $(`#form_reg_company [name="contact_subdistrict_old"]`).val();
+            let contact_address = $(`#form_reg_company [name="contact_address_old"]`).val();
+            let contact_postcode = $(`#form_reg_company [name="contact_postcode_old"]`).val();
+            let contact_country = $(`#country`).val();
+            let contact_country1 = $(`#country1`).val();
+
+            $(`#country`).val(contact_country1);
+            $(`#country1`).val(contact_country);
+            $(`#form_reg_company [name="Hcontact_province"]`).val(contact_province);
+            $(`#form_reg_company [name="Hcontact_district"]`).val(contact_district);
+            $(`#form_reg_company [name="Hcontact_subdistrict"]`).val(contact_subdistrict);
+            $(`#form_reg_company [name="Hcontact_address"]`).val(contact_address);
+            $(`#form_reg_company [name="Hcontact_postcode"]`).val(contact_postcode);
+        } else {
+            console.log(state);
+        }
+
+
+
+        // 1 นิติบุคคล 2 Foreigner 3 บุคคลทั่วไป(ไทย) 4 passpot 6 นิติบุคคลที่ไม่ได้จดทะเบียนกับกรมพัฒนาธุรกิจการค้า
+        let formkey = $(this).data("form");
+        let datatype = $(this).data("type");
+        type_from = datatype;
+
+        let formdata = $("#" + formkey + "  :input");
+
+        let sendform = "";
+        if (formdata.length) {
+            $.each(formdata, function(k, v) {
+                let ele = $(v);
+                sendform += ele.attr("name") + "=" + ele.val() + "&";
+            });
+        }
+
+        sendform += "type=" + datatype;
+        $.ajax({
+            url: BASE_URL + _INDEX + "register/add_member",
+            method: "post",
+            data: sendform,
+            success: function(result) {
+                if (result.code == "01" || result.error) {
+                    let html = "";
+                    let num_mes = result.error.length;
+                    console.log(result.error);
+                    if (result.error.length > 0) {
+                        html += "<div class='error-mess'>";
+                        $.each(result.error, function(k, v) {
+                            let namee = $("#" + formkey + ' input[name="' + v.name + '"]').attr(
+                                    "placeholder"
+                                ) ?
+                                $("#" + formkey + ' input[name="' + v.name + '"]').attr(
+                                    "placeholder"
+                                ) :
+                                $("#" + formkey + ' [name="' + v.name + '"]').attr(
+                                    "title"
+                                );
+                            if (namee == 'contact_title') {
+                                namee = 'คำนำหน้าชื่อ';
+                            } else if (namee == 'fo_title') {
+                                namee = 'Title Name';
+                            } else if (namee == 'title') {
+                                namee = 'คำนำหน้าชื่อ';
+                            } else if (namee == 'ชื่อบริษัท') {
+                                namee = 'เลขนิติบุคคล';
+                            }
+                            if (k == 0) {
+                                html += "<div class='row'>";
+                                html += "<div class='col-12 p-header'>";
+                                html += namee;
+                                html += " ";
+                                html += v.value;
+                                html += "</div>";
+                                html += "</div>";
+                            }
+                        });
+                        html += "</div>";
+                        html += `<div class="col-12 col-lg-12 mt-5 text-center">
+                    <div class="btn btn-primary  w-50 bdr-20 btn-register" data-dismiss="modal" aria-label="Close">ปิด / close</div>
+                </div>`
+                    }
+                    $("#public_modal .modal-body").html(html);
+                    $("#public_modal").modal("show");
+                } else if (result.code == "00") {
+
+
+                    $("#con_policy").data("from", formkey);
+                    $("#overlay-fullsrc").fadeIn('fast');
+                    $("body").addClass("overflow-body");
+                }
+            },
+        });
+    });
+    $(".closs-overlay").click(function() {
+        $("body").removeClass("overflow-body");
+        $("#overlay-fullsrc").fadeOut('fast');
+    });
+
+    function settitle(title) {
+        $(".title-register").html(title);
+    }
+    $("#con_policy").on("click", function() {
+        $('.modal-spin').modal('show');
+
+
+        let formkey = $(this).data("from");
+        let ck_policy = $("#ck_policy:checked").length;
+        if (ck_policy) {
+            let formdata = $("#" + formkey + "  :input");
+
+            let sendform = "";
+            if (formdata.length) {
+                $.each(formdata, function(k, v) {
+                    let ele = $(v);
+                    sendform += ele.attr("name") + "=" + ele.val() + "&";
+                });
+            }
+            sendform += "type=" + type_from;
+            $.ajax({
+                url: BASE_URL + _INDEX + "register/add_member_con",
+                method: "post",
+                async: false,
+                data: sendform,
+                beforeSend: function() {},
+                success: function(result) {
+
+
+                    if (result.code == "01" && result.error) {
+                        let html = "";
+                        if (result.error.length > 0) {
+                            html += "<div class='error-mess'>";
+                            $.each(result.error, function(k, v) {
+                                let namee = $(
+                                        "#" + formkey + ' input[name="' + v.name + '"]'
+                                    ).attr("placeholder") ?
+                                    $("#" + formkey + ' input[name="' + v.name + '"]').attr(
+                                        "placeholder"
+                                    ) :
+                                    v.name;
+                                html += "<div class='row'>";
+                                html += "<div class='col-12 p-header'>";
+                                html += namee;
+                                html += " ";
+                                html += v.value;
+                                html += "</div>";
+                                html += "</div>";
+                            });
+                            html += "</div>";
+                        }
+                        $("#public_modal .modal-body").html(html);
+                        $("#public_modal").modal("show");
+                    } else {
+                        if (result.url) {
+                            let fetch_care = fetch('https://care.ditp.go.th/api/api_caresaveuser.php?code=' + result.code.code_care + '&xx=' + result.code.xx)
+                                .then(() => {
+                                    $.ajax({
+                                        url: BASE_URL + _INDEX + "register/login_after_reg",
+                                        method: "post",
+                                        async: false,
+                                        data: {
+                                            email: result.code.ee,
+                                            pass: result.code.xx
+                                        },
+                                        success: function(data) {
+                                            $('.modal-spin').modal('hide');
+                                            window.location.href = result.url;
+                                        }
+                                    });
+                                });
+
+
+                        }
+                    }
+                },
+                complete: function() {}
+            });
+        } else {
+            console.log(10000);
+            $('.modal-spin').modal('hide');
+            let htmll = "";
+            htmll +=
+                "<div class='error-mess'>กรุณากด ยอมรับเงื่อนไข (PLASE ENTER POLICY)</div>";
+
+            $("#public_modal .modal-body").html(htmll);
+            $("#public_modal").modal("show");
+        }
+    });
+
+    function radio_foreigner(type) {
+        if (type == 2) {
+            $("#form_reg_foreigner #country_address").css(`display`, 'none');
+            $("#form_reg_foreigner #company-address").css(`display`, 'flex');
+            $(`#form_reg_foreigner [name="cid"]`).attr('placeholder', 'Corporate ID');
+
+
+        } else if (type == 4) {
+            $("#form_reg_foreigner #company-address").css(`display`, 'none');
+            $("#form_reg_foreigner #country_address").css(`display`, 'flex');
+            $(`#form_reg_foreigner [name="cid"]`).attr('placeholder', 'Passport ID');
+
+        }
+        $("#form_reg_foreigner .submitform").data("type", type);
+    }
+    // --------------------------------------------------------------------------------------------------------------------------------------------------------
+    $(`[name=data_type]`).on(`click`, function() {
+
+        let thisVal = $(this).val()
+        let title_corporation_text = `เลขนิติบุคคล (Username)`
+        let remark_text = `กรอกตัวอักษร หรือตัวเลขให้ครบถ้วน (บูรณาการฐานข้อมูลจากกรมพัฒนาธุรกิจ)`
+        let propReadonly = true
+        let header_text = `ข้อมูลบริษัท`
+        let name_corporation = `ชื่อบริษัท`
+
+        let displayDetail1 = `flex`
+        let displayDetail2 = `none`
+
+
+        if (parseInt(thisVal) === 1) {
+
+            $('#text-thf , #text-thl, #text-use2 , #thisVal6').hide();
+            $('#text-enf , #text-enl, #text-use1, #thisVal1').show();
+            $('#user1_id').attr("placeholder", "เลขนิติบุคคล");
+            title_corporation_text = title_corporation_text
+            remark_text = remark_text
+            header_text = header_text
+            name_corporation = name_corporation
+            propReadonly = true
+            displayDetail1 = displayDetail1
+            displayDetail2 = displayDetail2
+
+        } else if (parseInt(thisVal) === 6) {
+
+            $('#text-thf , #text-thl , #text-use2, #thisVal6').show();
+            $('#text-enf , #text-enl , #text-use1, #thisVal1').hide();
+            $(".loader_input").removeClass("show_wrong");
+            $('#user1_id').attr("placeholder", "เลขประจำตัวผู้เสียภาษีอากร 13 หลัก");
+            $(".warning-niti").hide();
+            title_corporation_text = `เลขประจำตัวองค์กร 13 หลัก (Username) `
+            remark_text = `กรอกตัวอักษร หรือตัวเลขให้ครบถ้วน`
+            propReadonly = false
+            header_text = `ข้อมูลองค์กร`
+            name_corporation = `ชื่อองค์กร`
+            displayDetail1 = `none`
+            displayDetail2 = `flex`
+
+
+        } else {
+            console.log(`error`)
+        }
+
+        $(".detail1").css(`display`, displayDetail1)
+        $(".detail2").css(`display`, displayDetail2)
+
+        $(".div_cid").removeClass("loader_input");
+        $(`#corporation_container input`).prop(`readonly`, propReadonly).val(null)
+        $(`#footer_text`).toggle(propReadonly)
+        $(`#title_corporation_text`).html(title_corporation_text)
+        $(`#remark_text`).html(remark_text)
+        $(`#header_text`).html(header_text)
+        $(`#name_corporation`).html(name_corporation)
+        $(`#company_name`).attr("placeholder", name_corporation)
+        $("#form_reg_company .submitform").data("type", parseInt(thisVal));
+    })
+
+    $(".ck_dbd").click(function() {
+        let cid = $("#form_reg_company input[name='cid']").val();
+        ck_dbd(cid);
+    });
+
+
+    function ck_dbd(cid) {
+        //  console.log(BASE_URL + _INDEX + "register/ck_com_dbd");
+        if (!cid) {
+            cid = "";
+        }
+        $.ajax({
+            url: BASE_URL + _INDEX + "register/ck_com_dbd",
+            method: "post",
+            data: {
+                cid: cid
+            },
+            error: ((error) => {
+                console.log({
+                    error
+                });
+            }),
+            success: function(result) {
+                let name_user = "";
+                let address = "";
+                let province = "";
+                let district = "";
+                let subdistrict = "";
+
+                if (result.length == 0) {
+                    $(".loader_input").removeClass("show_load");
+                    $(".loader_input").removeClass("show_wrong");
+                    $(".loader_input").removeClass("show_success");
+                } else if (result.company_name != '') {
+                    name_user = result.company_name;
+                    address = result.company_address;
+                    province = result.company_province;
+                    district = result.company_district;
+                    subdistrict = result.company_subdistrict;
+                    postcode = result.company_postcode;
+                    $(".loader_input").removeClass("show_load");
+                    $(".loader_input").removeClass("show_wrong");
+                    $(".loader_input").removeClass("show_success");
+                    $(".loader_input").addClass("show_success");
+                    $(".warning-niti").hide();
+                } else {
+                    $(".warning-niti").show();
+                    $(".loader_input").removeClass("show_load");
+                    $(".loader_input").removeClass("show_wrong");
+                    $(".loader_input").removeClass("show_success");
+                    $(".loader_input").addClass("show_wrong");
+                }
+                $("#form_reg_company input[name='company_name']").val(name_user);
+                $("#form_reg_company input[name='company_address']").val(address);
+                $("#form_reg_company input[name='company_province']").val(province);
+                $("#form_reg_company input[name='company_district']").val(district);
+                $("#form_reg_company input[name='company_subdistrict']").val(subdistrict);
+                $("#form_reg_company input[name='company_postcode']").val(postcode);
+            },
+        }).fail((error) => {
+            console.log(error)
+        });
+    }
+
+
+    $("#form_reg_company input[name='cid']").on("keyup", function() {
+        $(".loader_input").removeClass("show_load");
+        $(".loader_input").removeClass("show_wrong");
+        $(".loader_input").removeClass("show_success");
+        $(".loader_input").addClass("show_load");
+        $("#show-input").hide("hide");
+
+        let checkCoperationType = $(`[name=data_type]:checked`).val()
+
+        clearTimeout(time_send_dbd);
+        time_send_dbd = setTimeout(function() {
+
+            let cid = $("#form_reg_company input[name='cid']").val();
+
+            if (checkCoperationType === `1`) {
+                console.log(1111111);
+                ck_dbd(cid)
+            } else if (checkCoperationType === `6`) {
+                console.log(6666666);
+                $(".warning-niti").hide();
+                $(".loader_input").removeClass("show_load");
+                $(".loader_input").removeClass("show_wrong");
+                $(".loader_input").removeClass("show_success");
+
+            } else {
+                console.log(7777777);
+                // Deflaut
+                console.log(`Defualt check params:`, checkCoperationType)
+            }
+
+        }, 750);
+    });
+    // setTimeout(function(){ alert("Hello"); }, 3000);
+
+
+    var contact_tel = document.querySelector("input[name='contact_tel']");
+    var fo_tel = document.querySelector("input[name='fo_tel']");
+    var tel = document.querySelector("input[name='tel']");
+
+    window.intlTelInput(contact_tel, {
+        initialCountry: "auto",
+        geoIpLookup: function(success) {
+            // Get your api-key at https://ipdata.co/
+            fetch("https://api.ipdata.co/?api-key=ee33cf1471399e32d01edb80374112949546ca6fbed2e381ddd094b7")
+                .then(function(response) {
+                    if (!response.ok) return success("");
+                    return response.json();
+                })
+                .then(function(ipdata) {
+                    success(ipdata.country_code);
+                });
+        },
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js",
+    });
+
+    window.intlTelInput(fo_tel, {
+        initialCountry: "auto",
+        geoIpLookup: function(success) {
+            // Get your api-key at https://ipdata.co/
+            fetch("https://api.ipdata.co/?api-key=ee33cf1471399e32d01edb80374112949546ca6fbed2e381ddd094b7")
+                .then(function(response) {
+
+                    if (!response.ok) return success("");
+                    return response.json();
+                })
+                .then(function(ipdata) {
+                    //console.log('test');
+                    success(ipdata.country_code);
+                });
+        },
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js",
+    });
+
+    window.intlTelInput(tel, {
+        initialCountry: "auto",
+        geoIpLookup: function(success) {
+            // Get your api-key at https://ipdata.co/
+            fetch("https://api.ipdata.co/?api-key=ee33cf1471399e32d01edb80374112949546ca6fbed2e381ddd094b7")
+                .then(function(response) {
+                    if (!response.ok) return success("");
+                    return response.json();
+                })
+                .then(function(ipdata) {
+                    success(ipdata.country_code);
+                });
+        },
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js",
+    });
+
+    function show_pass(me, name, form) {
+        //console.log(me);
+        let state = $('#' + form).find(`[name="${name}"]`).css('-webkit-text-security')
+        if (state == 'none') {
+            $('#' + form).find(`[name="${name}"]`).css('-webkit-text-security', 'disc')
+            $(me).attr("class", "fa fa-eye-slash icon-password-reg");
+
+        } else {
+            $('#' + form).find(`[name="${name}"]`).css('-webkit-text-security', 'none')
+            $(me).attr("class", "fa fa-eye icon-password-reg");
+
+        }
+    }
+
+
+
+    //--------- search zip_code -------------//
+
+
+
+    const store_addr = (e) => {
+        //console.log(param)
+        $('.dropdown-menu').find('a.dropdown-item.dropdown-link.active').removeClass('active')
+        $(e).addClass('active')
+        let amphure_id = $(e).attr('amphure-id')
+        let province_id = $(e).attr('province-id')
+        let district_id = $(e).attr('district-id')
+        let zip_code = $(e).attr('zip-code')
+
+        let province_tag = $(e).attr('province-tag')
+        let district_tag = $(e).attr('district-tag')
+        let subdistrict_tag = $(e).attr('subdistrict-tag')
+        let zipcode_tag = $(e).attr('zipcode-tag')
+
+        let lang = $(e).attr('lang')
+
+        $(zipcode_tag).val(zip_code)
+        $.ajax({
+            url: BASE_URL + _INDEX + "register/get_provinces",
+            method: "post",
+            data: '',
+            success: function(result) {
+                $(province_tag).empty()
+                $.each(result, function(key, value) {
+                    if (lang == 'th') $(province_tag).append(`<option value="${value.id}">${value.name_th}</option>`);
+                    else $(province_tag).append(`<option value="${value.id}">${value.name_en}</option>`);
+                });
+                $('.selectpicker').selectpicker('refresh');
+
+                let option_province = $(province_tag + " option");
+                $.each(option_province, function(index, item) {
+                    if ($(item).val() == province_id) {
+                        $(item).prop("selected", true);
+                        $('.selectpicker').selectpicker('refresh');
+                        return false;
+                    }
+                });
+
+            }
+        });
+
+        $.ajax({
+            url: BASE_URL + _INDEX + "register/get_amphures",
+            method: "post",
+            data: "id=" + province_id,
+            success: function(result) {
+                $(district_tag).empty()
+                $.each(result, function(key, value) {
+                    if (lang == 'th') $(district_tag).append(`<option value="${value.id}">${value.name_th}</option>`);
+                    else $(district_tag).append(`<option value="${value.id}">${value.name_en}</option>`);
+                });
+
+                $('.selectpicker').selectpicker('refresh');
+
+                let option_district = $(district_tag + " option");
+                $.each(option_district, function(index, item) {
+                    if ($(item).val() == amphure_id) {
+                        $(item).prop("selected", true);
+                        $('.selectpicker').selectpicker('refresh');
+                        return false;
+                    }
+                });
+            }
+        });
+
+        $.ajax({
+            url: BASE_URL + _INDEX + "register/get_districts",
+            method: "post",
+            data: "id=" + amphure_id,
+            success: function(result) {
+                $(subdistrict_tag).empty()
+                $.each(result, function(key, value) {
+                    if (lang == 'th') $(subdistrict_tag).append(`<option value="${value.id}">${value.name_th}</option>`);
+                    else $(subdistrict_tag).append(`<option value="${value.id}">${value.name_en}</option>`);
+                });
+                $('.selectpicker').selectpicker('refresh');
+                let option_subdistrict = $(subdistrict_tag + " option");
+                $.each(option_subdistrict, function(index, item) {
+                    if ($(item).val() == district_id) {
+                        $(item).prop("selected", true);
+                        $('.selectpicker').selectpicker('refresh');
+                        return false;
+                    }
+
+                });
+            }
+        });
+    }
+
+    const get_address_from_zipcode = (postcode, dropdown, province, district, subdistrict, zipcode, lang) => {
+        $.ajax({
+            type: "post",
+            url: BASE_URL + _INDEX + "register/get_address_from_zipcode",
+            data: {
+                postcode: postcode
+            },
+            success: function(response) {
+                $(dropdown).empty();
+                if (response.res_code == '00') {
+                    response.res_result.forEach(function(value) {
+                        //console.log(value.district_id)
+                        if (lang == 'th') {
+                            subdistrict_name = value.name_th
+                            amphure_name = value.amphure_name_th
+                            province_name = value.province_name_th
+                        } else {
+                            subdistrict_name = value.name_en
+                            amphure_name = value.amphure_name_en
+                            province_name = value.province_name_en
+                        }
+
+                        let drop_down = `
+          <a class="dropdown-item dropdown-link" 
+              amphure-id="${value.amphure_id}" 
+              province-id="${value.province_id}" 
+              district-id="${value.district_id}"
+              zip-code="${value.zip_code}"
+
+              province-tag="${province}"
+              district-tag="${district}"
+              subdistrict-tag="${subdistrict}"
+              zipcode-tag="${zipcode}"
+
+              lang="${lang}"
+              onclick="store_addr(this)">
+              ${subdistrict_name
+                // +' <i class="fa fa-angle-double-right addr-icon" aria-hidden="true"></i> '+amphure_name
+                // +' <i class="fa fa-angle-double-right addr-icon" aria-hidden="true"></i> '+province_name
+                +' <i class="fa fa-angle-right addr-icon" aria-hidden="true"></i> '+value.zip_code
+              }
+          </a>`;
+
+                        $(dropdown).append(drop_down)
+                    })
+                } else {
+                    $(dropdown).append(`<a class="dropdown-item drop-down-icon text-center">ไม่พบข้อมูล</a>`)
+                        //console.log('ไม่พบข้อมูล')
+                }
+                //console.log(data)
+                $(dropdown).dropdown('show')
+            }
+        });
+    }
+
+    //--- on click ---//
+    $(`[name="corporation_postcode"]`).on('click', function() {
+        if ($(this).val() == '') {
+            show_drop_down_default('#dropdown_corporation_postcode')
+        }
+    })
+    $(`[name="company_postcodeEn"]`).on('click', function() {
+        if ($(this).val() == '') {
+            show_drop_down_default('#dropdown_company_postcodeEn')
+        }
+    })
+    $(`[name="contact_postcode"]`).on('click', function() {
+        if ($(this).val() == '') {
+            show_drop_down_default('#dropdown_contact_postcode')
+        }
+    })
+    $(`[name="postcode"]`).on('click', function() {
+        if ($(this).val() == '') {
+            show_drop_down_default('#dropdown_postcode')
+        }
+    })
+
+
+    //--- on keyup ---//
+    $(`[name="contact_postcode"]`).on('keyup', function() {
+        let postcode = $(this).val()
+        let dropdown = '#dropdown_contact_postcode'
+        let province = "#form_reg_company [name='contact_province']"
+        let district = "#form_reg_company [name='contact_district']"
+        let subdistrict = "#form_reg_company [name='contact_subdistrict']"
+        let zipcode = "#form_reg_company [name='contact_postcode']"
+        let lang = 'th'
+        show_drop_down_load(dropdown)
+        add_data_dropdown(postcode, dropdown, province, district, subdistrict, zipcode, lang)
+    })
+    $(`[name="company_postcodeEn"]`).on('keyup', function() {
+        let postcode = $(this).val()
+        let dropdown = '#dropdown_company_postcodeEn'
+        let province = "#form_reg_company [name='company_provinceEn']"
+        let district = "#form_reg_company [name='company_districtEn']"
+        let subdistrict = "#form_reg_company [name='company_subdistrictEn']"
+        let zipcode = "#form_reg_company [name='company_postcodeEn']"
+        let lang = 'en'
+        show_drop_down_load(dropdown)
+        add_data_dropdown(postcode, dropdown, province, district, subdistrict, zipcode, lang)
+    })
+    $(`[name="postcode"]`).on('keyup', function() {
+        let postcode = $(this).val()
+        let dropdown = '#dropdown_postcode'
+        let province = "#form_reg_people [name='provinceTh']"
+        let district = "#form_reg_people [name='districtTh']"
+        let subdistrict = "#form_reg_people [name='subdistrictTh']"
+        let zipcode = "#form_reg_people [name='postcode']"
+        let lang = 'th'
+        show_drop_down_load(dropdown)
+        add_data_dropdown(postcode, dropdown, province, district, subdistrict, zipcode, lang)
+    })
+    $(`[name="corporation_postcode"]`).on('keyup', function() {
+        let postcode = $(this).val()
+        let dropdown = '#dropdown_corporation_postcode'
+        let province = "#form_reg_company [name='corporation_province']"
+        let district = "#form_reg_company [name='corporation_district']"
+        let subdistrict = "#form_reg_company [name='corporation_subdistrict']"
+        let zipcode = "#form_reg_company [name='corporation_postcode']"
+        let lang = 'th'
+        show_drop_down_load(dropdown)
+        add_data_dropdown(postcode, dropdown, province, district, subdistrict, zipcode, lang)
+    })
+
+    //--- function --//
+    const show_drop_down_default = (e) => {
+        $(e).empty();
+        $(e).append(`<a class="dropdown-item drop-down-icon"><i class="fa fa-address-card-o" aria-hidden="true" style="font-size:1rem"></i> กรอกรหัสไปรษณีย์</a>`)
+    }
+    const show_drop_down_load = (e) => {
+        $(e).empty();
+        $(e).append(`<a class="dropdown-item drop-down-icon text-center">Loading...</a>`)
+    }
+    const add_data_dropdown = (postcode, dropdown, province, district, subdistrict, zipcode, lang) => {
+        if (postcode != '') {
+            clearTimeout(time_send_postcode);
+            time_send_postcode = setTimeout(function() {
+                get_address_from_zipcode(postcode, dropdown, province, district, subdistrict, zipcode, lang)
+            }, 750);
+        } else {
+            $(dropdown).dropdown(`hide`)
+
+        }
+    }
+
+    $(`[data="menu_perssent"]`).click(function() {
+        $(`[data="menu_perssent"] >.nav-link`).css(`background`, ``)
+
+        $(this).find(`.nav-link`).css(`background`, `#fff`)
+    })
+
+
+
+    $(document).ready(function() {
+
+        $(`#form_reg_foreigner .foreigner-address`).hide();
+        $(".warning-niti").hide();
+        $(".warning-pass").hide();
+        $(".warning-repass").hide();
+        $("#show-input").hide();
+        $("#show-pass").hide();
+        $("#show-repass").hide();
+
+
+        /////// niti///////////
+        $("#password").on("change", function() {
+            console.log($(this).val().length);
+            if ($(this).val().length < 8) {
+                $(".warning-pass").show();
+            } else {
+                $(".warning-pass").hide();
+            }
+        });
+
+        $("#repassword").on("change", function() {
+            let old_pass = $(`#password`).val();
+            if ($(this).val() != old_pass) {
+                $(".warning-repass").show();
+            } else {
+                $(".warning-repass").hide();
+            }
+        });
+
+        /////// noaml ///////////
+        $("#password_nomal").on("change", function() {
+            console.log($(this).val().length);
+            if ($(this).val().length < 8) {
+                $("#pass_nomal").show();
+            } else {
+                $("#pass_nomal").hide();
+            }
+        });
+        $("#repassword_nomal").on("change", function() {
+            let old_pass = $(`#password_nomal`).val();
+            if ($(this).val() != old_pass) {
+                $("#repass_nomal").show();
+            } else {
+                $("#repass_nomal").hide();
+            }
+        });
+
+        /////// nonthai ///////////
+        $("#password_nonthai").on("change", function() {
+            console.log($(this).val().length);
+            if ($(this).val().length < 8) {
+                $("#pass_nonthai").show();
+            } else {
+                $("#pass_nonthai").hide();
+            }
+        });
+        $("#repassword_nonthai").on("change", function() {
+            let old_pass = $(`#password_nonthai`).val();
+            if ($(this).val() != old_pass) {
+                $("#repass_nonthai").show();
+            } else {
+                $("#repass_nonthai").hide();
+            }
+        });
+
+
+        $("#password").on("keyup", function() {
+            $("#show-pass").show();
+        });
+        $("#repassword").on("keyup", function() {
+            $("#show-repass").show();
+        });
+
+        $(`#user_id`).on(`click`, function() {
+            if ($(this).val() == '') {
+                $(`#show-input`).show();
+            } else {
+                $(`#show-input`).hide();
+            }
+        });
+
+
+
+        // $('.sso-row-input').on('click','button[title="country"]',function(){
+
+        $.ajax({
+            url: BASE_URL + _INDEX + "register/get_country",
+            method: "post",
+            data: {
+                "coutry": 1
+            },
+            success: function(result) {
+
+                $.each(result, function(key, data) {
+
+                    $('#country').append("<option class='country_name' value=" + data.CountryNameEN + ">" + data.CountryNameEN + "</option>");
+
+                    // var span = parent.find('.text').text(data.CountryNameEN);
+                    // var input = "<input type='hidden' value="+data.CountryNameEN.trim()+" name='country_name'>";
+
+                    // parent.append(span);
+
+
+
+
+                });
+            }
+        });
+
+        $.ajax({
+            url: BASE_URL + _INDEX + "register/get_country",
+            method: "post",
+            data: {
+                "coutry": 1
+            },
+            success: function(result) {
+
+                $.each(result, function(key, data) {
+
+                    $("#country1").append("<option class='country_name' value=" + data.CountryNameEN + ">" + data.CountryNameEN + "</option>");
+                    // console.log($("#country1").val());
+                    // var span = parent.find('.text').text(data.CountryNameEN);
+                    // var input = "<input type='hidden' value="+data.CountryNameEN.trim()+" name='country_name'>";
+
+                    // parent.append(span);
+
+
+
+
+                });
+            }
+        });
+        // });
+
+
+
+    });
+</script>
+
+</html>

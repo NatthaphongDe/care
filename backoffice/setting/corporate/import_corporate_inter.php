@@ -1,0 +1,358 @@
+<?php
+session_start();
+$date_setting = date("Y-m-d h:i:sa");
+$emp_id = $_SESSION["admin"]["empId"];
+$emp_section = $_SESSION["admin"]["empSection"];
+include('../../../config/config.php');
+require_once '../library/PHPExcel-1.8/Classes/PHPExcel.php';
+include '../library/PHPExcel-1.8/Classes/PHPExcel/IOFactory.php';
+$hospital_select = $_POST['hospital_id'];
+$importsuccess = 0;
+$updatesuccess = 0;
+$loop = 0;
+$importerror = 0;
+$importerror_t = 0;
+$ownererror = 0;
+$error = 0;
+$inputFileName = $_POST['excel_file'];
+
+$inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+$objReader = PHPExcel_IOFactory::createReader($inputFileType);
+$objReader->setReadDataOnly(true);
+$objPHPExcel = $objReader->load($inputFileName);
+
+$objWorksheet = $objPHPExcel->setActiveSheetIndex(0);
+$highestRow = $objWorksheet->getHighestRow();
+$highestColumn = $objWorksheet->getHighestColumn();
+$headingsArray = $objWorksheet->rangeToArray('A1:'.$highestColumn.'1',null, true, true, true);
+$headingsArray = $headingsArray[1];
+
+$r = -1;
+$namedDataArray = array();
+$rowarr=0;
+if ($highestRow<3) {
+?>
+<div class="setup-list">
+	<div class="col-xs-12 col-xs-12  no-margin-padding">
+		<div class="setup-text-list" style="color:#F00;text-align: center;">
+			No data
+		</div>
+	</div>
+	<!-- <div class="col-xs-12 col-xs-3  no-margin-padding text-right">
+		<div class="countitem"  style="color:#F00;">
+		</div>
+	</div> -->
+</div>
+<?php
+	exit();
+}
+
+//checkheader format
+for ($row = 1; $row <= $highestRow; ++$row) {
+	$dataRow = $objWorksheet->rangeToArray('A'.$row.':'.$highestColumn.$row,null, true, true, true);
+	if ($row == 1) {
+		if(	$dataRow[$row]['A'] != "เลขนิติบุคคล (13 หลัก)"
+		|| $dataRow[$row]['B'] != "ชื่อบริษัทที่จดทะเบียน*"
+		|| $dataRow[$row]['C'] != "สาขา"
+		|| $dataRow[$row]['D'] != "เบอร์โทรศัพท์*"
+		|| $dataRow[$row]['E'] != "Website"
+		|| $dataRow[$row]['F'] != "ที่อยู่ติดต่อ*"
+		|| $dataRow[$row]['G'] != "ประเทศ*"
+		|| $dataRow[$row]['H'] != "ผู้ที่ติดต่อ"
+		|| $dataRow[$row]['I'] != "ประเภทธุรกิจ*"
+		|| $dataRow[$row]['J'] != "สถานะบริษัท*"
+		) {
+
+			// if ($dataRow[$row]['B'] != "ชื่อบริษัท"){ $errorcolumn .="B,"; }
+			// if ($dataRow[$row]['C'] != "สาขา") { $errorcolumn .="C,"; }
+			// if ($dataRow[$row]['D'] != "ชื่อที่ติดต่อ") { $errorcolumn .="D,"; }
+			// if ($dataRow[$row]['F'] != "เบอร์แฟกซ์") { $errorcolumn .="F,"; }
+      		// if ($dataRow[$row]['G'] != "E-mail ที่ติดต่อ") { $errorcolumn .="G,"; }
+			// if ($dataRow[$row]['H'] != "ที่อยู่ติดต่อ") { $errorcolumn .="H,"; }
+			// if ($dataRow[$row]['I'] != "ประเทศ") { $errorcolumn .="I,"; }
+			// if ($dataRow[$row]['J'] != "ชื่อผู้ติดต่อ") { $errorcolumn .="J,"; }
+			//if ($dataRow[$row]['K'] != "ผู้ติดต่อ(นามสกุล)") { $errorcolumn .="K,"; }
+
+
+			?>
+			<div class="setup-list">
+				<div class="col-xs-12 col-xs-9  no-margin-padding">
+					<div class="setup-text-list" style="color:#F00;">
+						Excel file format error please try again.<?php// echo substr($errorcolumn, 0, -1);?>
+					</div>
+				</div>
+				<div class="col-xs-12 col-xs-3  no-margin-padding text-right">
+					<div class="countitem"  style="color:#F00;">
+
+					</div>
+				</div>
+			</div>
+			<?php
+			exit();
+		}
+	}
+		++$r;
+		$col=0;
+		if ($row>=3) {
+			foreach($headingsArray as $columnKey => $columnHeading) {
+				$namedDataArray[$rowarr][$col] = trim(PHPExcel_Shared_String::SanitizeUTF8($dataRow[$row][$columnKey]));
+				$col++;
+			}
+			$rowarr++;
+		}
+	// }
+
+
+}
+
+for ($i=0;$i<$rowarr;$i++) {
+
+	$sql_card1= "select id from Country where name = '".$namedDataArray[$i][8]."' AND country_status = '0' ";
+	$query_card1 = $conn->query($sql_card1);
+	if ($query_card1->num_rows>0) {
+		while($result_card1 = $query_card1->fetch_assoc()) {
+			$Country = $result_card1['id'];
+		}
+	}else{
+		$Country = "";
+	}
+  if ($namedDataArray[$i][1]!="" && $namedDataArray[$i][3]!="" && $namedDataArray[$i][5]!="" && $namedDataArray[$i][6]!="" && $namedDataArray[$i][8]!=""
+      && $namedDataArray[$i][9]!="" ) {
+
+    // $error_mail=false;
+		// $sql_card= "SELECT cpr_id from Corporate where cpr_numbertrade = '".$namedDataArray[$i][0]."' AND cpr_status = 0 AND cpr_type = '2' AND cpr_section='$emp_section' ";
+
+		if($namedDataArray[$i][0]!=''){
+
+			$sql_card= "SELECT cpr_id from Corporate where cpr_numbertrade = '".$namedDataArray[$i][0]."' AND cpr_status = 0 AND cpr_type = '2' AND cpr_section='$emp_section' ";
+			$up = " `cpr_companyname`='".$namedDataArray[$i][1]."', ";
+		}else{
+			$sql_card= "SELECT cpr_id from Corporate where cpr_companyname = '".$namedDataArray[$i][1]."' AND cpr_status = 0 AND cpr_type = '2'
+									AND cpr_numbertrade = '' AND cpr_section='$emp_section' ";
+			$up = '';
+		}
+
+		$query_card = $conn->query($sql_card);
+		if ($query_card->num_rows>0) {
+      while($result_card = $query_card->fetch_assoc())
+      {
+        $id_p = $result_card['cpr_id'];
+        $sql_edit = "UPDATE Corporate SET
+					$up
+					`cpr_numbertrade`='".$namedDataArray[$i][0]."'
+					,`cpr_branch`= '".$namedDataArray[$i][2]."'
+					,cpr_telephone = '".$namedDataArray[$i][3]."'
+					,`cpr_web`=  '".$namedDataArray[$i][4]."'
+					,cpr_address = '".$namedDataArray[$i][5]."'
+					,`Country_id`= '$Country'
+					,`cpr_contact_person`= '".$namedDataArray[$i][7]."'
+					, cpr_type_import_export = '".$namedDataArray[$i][8]."'
+					,`cpr_reliable`= '".$namedDataArray[$i][9]."'
+					,cpr_import = '1'
+					,cpr_update_datetime =  '$date_setting'
+					,cpr_updateBy_id = '$emp_id'
+                    where  cpr_id = '$id_p'";
+            $query_edit = $conn->query($sql_edit);
+						if($query_edit){
+								$updatesuccess++;
+								$loop++;
+							}else{
+								$importerror++;
+								$error_row[$loop]=$i;
+						}
+      }
+		}else{
+			$sql_add = "INSERT INTO Corporate (`cpr_section`,`cpr_type`,`cpr_numbertrade`, `cpr_companyname`, `cpr_branch`,cpr_telephone, `cpr_web`,cpr_address, `Country_id`
+																					,`cpr_contact_person`,`cpr_type_import_export`,`cpr_reliable`,cpr_import,cpr_create_datetime,cpr_createBy_id)
+									VALUES ('$emp_section'
+													,'2'
+													,'".$namedDataArray[$i][0]."'
+													,'".$namedDataArray[$i][1]."'
+													,'".$namedDataArray[$i][2]."'
+													,'".$namedDataArray[$i][3]."'
+													,'".$namedDataArray[$i][4]."'
+													,'".$namedDataArray[$i][5]."'
+													,'".$Country."'
+													,'".$namedDataArray[$i][7]."'
+													,'".$namedDataArray[$i][8]."'
+													,'".$namedDataArray[$i][9]."'
+													,'1'
+													,'$date_setting'
+													,'$emp_id')";
+			$query_add = $conn->query($sql_add);
+			if($query_add){
+          $importsuccess++;
+          $loop++;
+        }else{
+          $importerror++;
+          $error_row[$loop]=$i;
+      }
+    }
+	}
+	else {
+		$error++;
+
+		?>
+		<div class="setup-list" style="">
+		<?php
+			$errcolumn ="";
+			$errcolumn ="";
+			if ($namedDataArray[$i][1]=="") { $errcolumn .= "ชื่อบริษัท*,"; }
+			if ($namedDataArray[$i][4]=="") { $errcolumn .= " หมายเลขโทรศัพท์ที่ติดต่อ*,"; }
+			if ($namedDataArray[$i][6] =="") { $errcolumn .=" E-mail ที่ติดต่อ*,"; }
+			if ($namedDataArray[$i][7] =="") { $errcolumn .=" ที่อยู่ติดต่อ*,"; }
+			if ($namedDataArray[$i][8] =="") { $errcolumn .=" ประเทศ*,"; }
+			if ($namedDataArray[$i][9] =="") { $errcolumn .=" ประเภทธุรกิจ*,"; }
+
+
+		?>
+			<div class="col-xs-12 col-xs-9  no-margin-padding">
+				<div class="setup-text-list" style="color:#F00;">
+					Data Error in row --> <?php  echo $i+3;?> - Column (<?php echo substr($errcolumn, 0, -1); ?> )
+				</div>
+			</div>
+			<div class="col-xs-12 col-xs-3  no-margin-padding text-right">
+				<div class="countitem"  style="color:#F00;">
+				</div>
+			</div>
+		</div>
+		<?php
+	}
+}
+
+if ($importsuccess!=0) {
+?>
+<div class="setup-list">
+	<div class="col-xs-9 col-xs-9  no-margin-padding">
+		<div class="setup-text-list" style="color:#090;">
+			Import Success
+		</div>
+	</div>
+	<div class="col-xs-3 col-xs-3  no-margin-padding text-right">
+		<div class="countitem"  style="color:#090;">
+			<?php echo $importsuccess; ?> Record
+		</div>
+	</div>
+</div>
+<?php
+}else{
+  ?>
+  <div class="setup-list">
+  	<div class="col-xs-9 col-xs-9  no-margin-padding">
+  		<div class="setup-text-list" style="color:#090;">
+  			Import Success
+  		</div>
+  	</div>
+  	<div class="col-xs-3 col-xs-3  no-margin-padding text-right">
+  		<div class="countitem"  style="color:#090;">
+  			<?php echo 0; ?> Record
+  		</div>
+  	</div>
+  </div>
+<?php
+}
+?>
+
+<?
+if ($updatesuccess!=0) {
+?>
+<div class="setup-list">
+	<div class="col-xs-9 col-xs-9  no-margin-padding">
+		<div class="setup-text-list" style="color:#090;">
+			Update Success
+		</div>
+	</div>
+	<div class="col-xs-3 col-xs-3  no-margin-padding text-right">
+		<div class="countitem"  style="color:#090;">
+			<?php echo $updatesuccess; ?> Record
+		</div>
+	</div>
+</div>
+<?php
+}else{
+  ?>
+  <div class="setup-list">
+  	<div class="col-xs-9 col-xs-9  no-margin-padding">
+  		<div class="setup-text-list" style="color:#090;">
+  			Update Success
+  		</div>
+  	</div>
+  	<div class="col-xs-3 col-xs-3  no-margin-padding text-right">
+  		<div class="countitem"  style="color:#090;">
+  			<?php echo 0; ?> Record
+  		</div>
+  	</div>
+  </div>
+<?php
+}
+?>
+<?
+if ($updatesuccess!=0) {
+?>
+<div class="setup-list">
+	<div class="col-xs-9 col-xs-9  no-margin-padding">
+		<div class="setup-text-list" style="color:#F00;">
+			<!-- Data Error -->
+		</div>
+	</div>
+	<div class="col-xs-3 col-xs-3  no-margin-padding text-right">
+		<div class="countitem"  style="color:#F00;">
+			<?php //echo $error; ?>
+			 <!-- Record -->
+		</div>
+	</div>
+</div>
+<?php
+}else{
+  ?>
+  <div class="setup-list">
+  	<div class="col-xs-9 col-xs-9  no-margin-padding">
+  		<div class="setup-text-list" style="color:#F00;">
+  			<!-- Data Error -->
+  		</div>
+  	</div>
+  	<div class="col-xs-3 col-xs-3  no-margin-padding text-right">
+  		<div class="countitem"  style="color:#F00;">
+  			<?php //echo 0; ?>
+				<!-- Record -->
+  		</div>
+  	</div>
+  </div>
+<?php
+}
+?>
+<?
+if ($importerror!=0) {
+?>
+<div class="setup-list">
+	<div class="col-xs-9 col-xs-9  no-margin-padding">
+		<div class="setup-text-list" style="color:#F00;">
+			<!-- Import Error -->
+		</div>
+	</div>
+	<div class="col-xs-3 col-xs-3  no-margin-padding text-right">
+		<div class="countitem"  style="color:#F00;">
+			<?php //echo $error; ?>
+			<!-- Record -->
+		</div>
+	</div>
+</div>
+<?php
+}else{
+  ?>
+  <div class="setup-list">
+  	<div class="col-xs-9 col-xs-9  no-margin-padding">
+  		<div class="setup-text-list" style="color:#F00;">
+  			<!-- Import Error -->
+  		</div>
+  	</div>
+  	<div class="col-xs-3 col-xs-3  no-margin-padding text-right">
+  		<div class="countitem"  style="color:#F00;">
+  			<?php //echo 0; ?>
+				<!-- Record -->
+  		</div>
+  	</div>
+  </div>
+<?php
+}
+?>

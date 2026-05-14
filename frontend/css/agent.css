@@ -1,0 +1,681 @@
+body,html{
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+  background-color: #EBEBEB;
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 16px;
+  color: #048F78;
+}
+p{
+  margin: 0px;
+}
+.body-index{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+#div_logo img{
+  width: 90px;
+  margin-top: 25px;
+}
+.box_file_agentperson,.box_file_agentoffice{
+  background-color: #fff !important;
+}
+.div_img{
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  background: #FFF;
+  text-align: center;
+  overflow: hidden;
+  vertical-align: middle;
+  border: 1px solid #CFD8DC;
+}
+.btn_submit_agent a{
+  color: #fff;
+}
+.language{
+  float: right;
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+  color: #fff;
+}
+.language a{
+  color: #fff;
+}
+#lang_agent{
+  margin-top: 40px;
+}
+.title-language{
+  float: right;
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: italic;
+  color: #fff;
+}
+.lang_active {
+    color: #4CD964;
+}
+.body-index-hr{
+  background-image:url(../images/bg_index_hr.jpg);
+  /* Full height */
+  height: 170px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.bg_menu_hr{
+  background:url(../images/bg_index_hr_menu.png) repeat center bottom;
+  height: 70px;
+}
+.footer-index{
+  background-image:url(../images/bg_footer_index.jpg);
+  /* Full height */
+  height: 87px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  text-align: center;
+}
+#div_logo{
+  height: 100px;
+}
+.hr_agent{
+  display: inline-block;
+  margin-top: 25px;
+  color: #fff;
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: italic;
+}
+.footer-index img{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.footer-index-xl{
+  position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+}
+.img-logo-footer{
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 13px;
+  margin-bottom: 13px;
+}
+
+.credits-footer{
+  text-align: left;
+  display: inline-block;
+  vertical-align: middle;
+}
+.credits-1{
+  color: #fff;
+  font-family: 'kanitextra';
+  font-weight: lighter;
+  font-style: normal;
+  margin-left: 25px;
+}
+.credits-2{
+  color: #fff;
+  font-family: 'kanitextra';
+  font-weight: lighter;
+  font-style: normal;
+  margin-left: 25px;
+}
+.panel{
+  border-radius: 7px;
+}
+.panel-heading{
+  border-radius: 7px 7px 0px 0px;
+}
+.panel-agent{
+  margin-top: 30px;
+}
+.panel-hr-agent{
+  background: rgba(76,170,81,1);
+  background: -moz-linear-gradient(left, rgba(76,170,81,1) 0%, rgba(76,170,81,1) 68%, rgba(137,194,141,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(76,170,81,1)), color-stop(68%, rgba(76,170,81,1)), color-stop(100%, rgba(137,194,141,1)));
+  background: -webkit-linear-gradient(left, rgba(76,170,81,1) 0%, rgba(76,170,81,1) 68%, rgba(137,194,141,1) 100%);
+  background: -o-linear-gradient(left, rgba(76,170,81,1) 0%, rgba(76,170,81,1) 68%, rgba(137,194,141,1) 100%);
+  background: -ms-linear-gradient(left, rgba(76,170,81,1) 0%, rgba(76,170,81,1) 68%, rgba(137,194,141,1) 100%);
+  background: linear-gradient(to right, rgba(76,170,81,1) 0%, rgba(76,170,81,1) 68%, rgba(137,194,141,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4caa51', endColorstr='#89c28d', GradientType=1 );
+}
+.box_file_agentoffice{
+  width: 400px;
+  display: inline-block;
+}
+.btn_file_agentoffice{
+  display: inline-block;
+}
+.color-star{
+  color:#E74C3C;
+}
+.div_row_agent{
+  margin-top: 10px;
+}
+.div_office_code,.div_office_fix,.div_office_code_po{
+  text-align: right;
+}
+.div_row_agent_xr{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.hr_txt_agent_office{
+  color: #fff;
+}
+.txt_comment{
+  color: #FFB549;
+}
+.txt_comment_2{
+  color: #FFB549;
+}
+.btn_submit_agent{
+  text-align: center;
+  margin-bottom: 30px;
+}
+.box_file_agentperson{
+  width: 300px;
+  display: inline-block;
+}
+.btn_file_agentperson{
+  display: inline-block;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.bootstrap-select>.dropdown-toggle.bs-placeholder, .bootstrap-select>.dropdown-toggle.bs-placeholder:active, .bootstrap-select>.dropdown-toggle.bs-placeholder:focus, .bootstrap-select>.dropdown-toggle.bs-placeholder:hover{
+  color: #048F78;
+}
+.form-control{
+  color: #048F78;
+}
+.btn_file_agentperson{
+  background-color: #CFD8DC;
+  border-color: #CFD8DC;
+  width: 100px;
+  font-family: 'kanitregular';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 16px;
+  color: #78909C;
+}
+.btn_file_agentperson:hover{
+  background-color: #CFD8DC;
+  border-color: #CFD8DC;
+  width: 100px;
+  font-family: 'kanitregular';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 16px;
+  color: #78909C;
+}
+input[type='radio'] {
+  -webkit-appearance:none;
+  width:18px;
+  height:18px;
+  border:1px solid darkgray;
+  border-radius:50%;
+  outline:none;
+}
+
+input[type='radio']:before {
+  content:'';
+  display:block;
+  width:10px;
+  height:10px;
+  margin: 20% auto;
+  border-radius:50%;
+}
+input[type='radio']:checked:before {
+  background:#7CB342;
+}
+.btn_file_agentoffice{
+  background-color: #CFD8DC;
+  border-color: #CFD8DC;
+  width: 100px;
+  font-family: 'kanitregular';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 16px;
+  color: #78909C;
+}
+.btn_file_agentoffice:hover{
+  background-color: #CFD8DC;
+  border-color: #CFD8DC;
+  width: 100px;
+  font-family: 'kanitregular';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 16px;
+  color: #78909C;
+}
+#sex_person_1,#sex_person_2,#department_members_1,#department_members_2,#sex_1,#sex_2{
+  vertical-align: sub;
+}
+
+@media (max-width: 1024px){
+  .footer-index{
+    text-align: left;
+  }
+  .img-logo-footer{
+    margin-left: 50px;
+  }
+  .credits-footer{
+    position: absolute;
+    font-size: 14px;
+    margin-top: 25px;
+  }
+  .txt_comment{
+    font-size: 14px;
+  }
+  #sex_person_1,#sex_person_2{
+    vertical-align: sub;
+  }
+}
+@media (max-width: 991px){
+  .div_office_code, .div_office_fix, .div_office_code_po{
+    text-align: left;
+  }
+  .notipass{
+    text-align: center;
+    margin-top: 5px;
+    padding-right: 40px;
+  }
+  .bg_menu_hr{
+    height: 68px;
+  }
+  #div_logo img{
+  margin-left: 25px;
+  }
+.footer-index{
+  text-align:inherit;
+}
+.img-logo-footer{
+  margin-left: 50px;
+}
+.credits-footer{
+  position: absolute;
+  font-family: 'kanitextra';
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 9.6px;
+  margin-top: 35px;
+}
+.box_file_agentperson{
+  width: 400px;
+}
+.div_office_fix{
+  text-align: left;
+}
+.box_lastnameperson_agentperson,.div_office_fix,.box_code_person_agentperson,.div_office_code,.box_fix_person_agentperson{
+  margin-top: 10px;
+}
+.div_office_code{
+  text-align: left;
+}
+.sel_country_person_person,.sel_city_person_person{
+  width: 300px !important;
+}
+.box_code_person_agentperson,.box_tel_person_agentperson,.box_fix_person_agentperson,.box_email_agentperson,.box_password_agentperson,.box_re_password_agentperson{
+  width: 300px;
+}
+.txt_comment{
+  display: none;
+}
+.hide_comment{
+  display: block !important;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+.hr_agent{
+  margin-left: 35px;
+}
+.div_office_code,.box_code_agentoffice,.div_office_fix,.box_fix_agentoffice{
+  margin-top: 10px;
+}
+.sel_country_office,.sel_city_office{
+  width: 300px !important;
+}
+.box_code_agentoffice,.box_tel_agentoffice,.box_fix_agentoffice{
+  width: 300px;
+}
+.box_file_agentoffice{
+  width: 340px;
+}
+.box_lastnameperson_agentoffice,.box_code_person_agentoffice,.box_fix_person_agentoffice{
+  margin-top: 10px;
+}
+.sel_country_person_office,.sel_city_person_office{
+  width: 300px !important;
+}
+.box_code_person_agentoffice,.box_tel_person_agentoffice,.box_fix_person_agentoffice,.box_email_agentoffice,.box_password_agentoffice,.box_re_password_agentoffice{
+  width: 300px;
+}
+#department_members_1,#department_members_2,#sex_1,#sex_2,#sex_person_1,#sex_person_2{
+  vertical-align: middle;
+}
+.txt_department,.txt_notdepartment{
+  vertical-align: sub;
+}
+/*.notipass_txt{
+  margin-left:115px;
+}*/
+}
+@media (max-width: 768px){
+  .div_office_code, .div_office_fix, .div_office_code_po{
+    text-align: left;
+  }
+  .notipass{
+    text-align: center;
+    margin-top: 5px;
+    padding-right: 40px;
+  }
+  .bg_menu_hr{
+    height: 68px;
+  }
+  #div_logo img{
+  margin-left: 25px;
+  }
+.footer-index{
+  text-align:inherit;
+}
+.img-logo-footer{
+  margin-left: 50px;
+}
+.credits-footer{
+  position: absolute;
+  font-family: 'kanitextra';
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 9.6px;
+  margin-top: 20px;
+}
+.box_file_agentperson{
+  width: 400px;
+}
+.div_office_fix{
+  text-align: left;
+}
+.box_lastnameperson_agentperson,.div_office_fix,.box_code_person_agentperson,.div_office_code,.box_fix_person_agentperson{
+  margin-top: 10px;
+}
+.div_office_code{
+  text-align: left;
+}
+.sel_country_person_person,.sel_city_person_person{
+  width: 300px !important;
+}
+.box_code_person_agentperson,.box_tel_person_agentperson,.box_fix_person_agentperson,.box_email_agentperson,.box_password_agentperson,.box_re_password_agentperson{
+  width: 300px;
+}
+.txt_comment{
+  display: none;
+}
+.hide_comment{
+  display: block !important;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+.hr_agent{
+  margin-left: 35px;
+}
+.div_office_code,.box_code_agentoffice,.div_office_fix,.box_fix_agentoffice{
+  margin-top: 10px;
+}
+.sel_country_office,.sel_city_office{
+  width: 300px !important;
+}
+.box_code_agentoffice,.box_tel_agentoffice,.box_fix_agentoffice{
+  width: 300px;
+}
+.box_file_agentoffice{
+  width: 340px;
+}
+.box_lastnameperson_agentoffice,.box_code_person_agentoffice,.box_fix_person_agentoffice{
+  margin-top: 10px;
+}
+.sel_country_person_office,.sel_city_person_office{
+  width: 300px !important;
+}
+.box_code_person_agentoffice,.box_tel_person_agentoffice,.box_fix_person_agentoffice,.box_email_agentoffice,.box_password_agentoffice,.box_re_password_agentoffice{
+  width: 300px;
+}
+#department_members_1,#department_members_2,#sex_1,#sex_2,#sex_person_1,#sex_person_2{
+  vertical-align: middle;
+}
+.txt_department,.txt_notdepartment{
+  vertical-align: sub;
+}
+}
+@media (max-width: 425px){
+  .box_file_agentperson{
+    width: 50%;
+  }
+  .title-language{
+    display: none;
+  }
+  .notipass{
+    padding-right: 0px;
+  }
+  .sel_country_person_person, .sel_city_person_person{
+    width: 100% !important;
+  }
+  .box_code_person_agentperson, .box_tel_person_agentperson, .box_fix_person_agentperson, .box_email_agentperson, .box_password_agentperson, .box_re_password_agentperson{
+    width: 100%;
+  }
+  .img-logo-footer{
+    margin-left: 15px;
+    margin-top: 20px;
+  }
+  .footer-index img{
+    width: 82px;
+    height: 22px;
+  }
+  .credits-footer{
+    font-size: 8px;
+    margin-top: 13px;
+  }
+  .credits-1,.credits-2{
+    margin-left: 10px;
+  }
+  .box_file_agentperson,.box_nameperson_agentperson,.box_lastnameperson_agentperson,
+  .box_cardnumber_agentoffice,.box_position_agentperson,.box_address_person_agentperson,
+  .sel_country_person_person,.sel_city_person_person,.box_code_person_agentperson,
+  .box_tel_person_agentperson,.box_fix_person_agentperson,.box_email_agentperson,.box_password_agentperson,.box_re_password_agentperson{
+    margin-top: 5px;
+  }
+  .hr_agent{
+    font-size: 14px;
+    margin-top: 15px;
+    width: 74%;
+  }
+  .box_file_agentoffice{
+    width: 50%;
+  }
+  .sel_country_office,.sel_city_office,.sel_country_person_office, .sel_city_person_office{
+    width: 100% !important;
+  }
+  .box_code_agentoffice, .box_tel_agentoffice, .box_fix_agentoffice,.box_code_person_agentoffice,
+  .box_tel_person_agentoffice, .box_fix_person_agentoffice, .box_email_agentoffice, .box_password_agentoffice, .box_re_password_agentoffice{
+    width: 100%;
+  }
+  body, html{
+    font-size: 14px;
+  }
+  #department_members_div{
+    padding-left: 0px;
+  }
+  #department_members_1,#department_members_2,#sex_1,#sex_2{
+    vertical-align: middle;
+  }
+  .txt_department,.txt_notdepartment{
+    vertical-align: bottom;
+  }
+  .box_file_agentoffice,.box_name_agentoffice,.box_branch_agentoffice,
+  .box_trade_agentoffice,.box_address_agentoffice,.sel_country_office,
+  .sel_city_office, .sel_country_person_office, .sel_city_person_office,
+  .box_code_agentoffice, .box_tel_agentoffice, .box_fix_agentoffice,
+  .box_code_person_agentoffice, .box_tel_person_agentoffice,
+  .box_fix_person_agentoffice, .box_email_agentoffice, .box_password_agentoffice,
+  .box_re_password_agentoffice,.box_nameperson_agentoffice,.box_position_agentoffice,
+  .box_address_person_agentoffice{
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 375px){
+  .box_file_agentperson{
+    width: 50%;
+  }
+  .sel_country_person_person, .sel_city_person_person{
+    width: 100% !important;
+  }
+  .box_code_person_agentperson, .box_tel_person_agentperson, .box_fix_person_agentperson, .box_email_agentperson, .box_password_agentperson, .box_re_password_agentperson{
+    width: 100%;
+  }
+  .img-logo-footer{
+    margin-left: 15px;
+    margin-top: 20px;
+  }
+  .footer-index img{
+    width: 82px;
+    height: 22px;
+  }
+  .credits-footer{
+    font-size: 8px;
+    margin-top: 13px;
+  }
+  .credits-1,.credits-2{
+    margin-left: 10px;
+  }
+  .box_file_agentperson,.box_nameperson_agentperson,.box_lastnameperson_agentperson,
+  .box_cardnumber_agentoffice,.box_position_agentperson,.box_address_person_agentperson,
+  .sel_country_person_person,.sel_city_person_person,.box_code_person_agentperson,
+  .box_tel_person_agentperson,.box_fix_person_agentperson,.box_email_agentperson,.box_password_agentperson,.box_re_password_agentperson{
+    margin-top: 5px;
+  }
+  .hr_agent{
+    font-size: 14px;
+    margin-top: 15px;
+    width: 74%;
+  }
+  .box_file_agentoffice{
+    width: 50%;
+  }
+  .sel_country_office,.sel_city_office,.sel_country_person_office, .sel_city_person_office{
+    width: 100% !important;
+  }
+  .box_code_agentoffice, .box_tel_agentoffice, .box_fix_agentoffice,.box_code_person_agentoffice,
+  .box_tel_person_agentoffice, .box_fix_person_agentoffice, .box_email_agentoffice, .box_password_agentoffice, .box_re_password_agentoffice{
+    width: 100%;
+  }
+  body, html{
+    font-size: 14px;
+  }
+  #department_members_div{
+    padding-left: 0px;
+  }
+  #department_members_1,#department_members_2,#sex_1,#sex_2{
+    vertical-align: middle;
+  }
+  .txt_department,.txt_notdepartment{
+    vertical-align: bottom;
+  }
+  .box_file_agentoffice,.box_name_agentoffice,.box_branch_agentoffice,
+  .box_trade_agentoffice,.box_address_agentoffice,.sel_country_office,
+  .sel_city_office, .sel_country_person_office, .sel_city_person_office,
+  .box_code_agentoffice, .box_tel_agentoffice, .box_fix_agentoffice,
+  .box_code_person_agentoffice, .box_tel_person_agentoffice,
+  .box_fix_person_agentoffice, .box_email_agentoffice, .box_password_agentoffice,
+  .box_re_password_agentoffice,.box_nameperson_agentoffice,.box_position_agentoffice,
+  .box_address_person_agentoffice{
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 320px){
+  .box_file_agentperson{
+    width: 50%;
+  }
+  .sel_country_person_person, .sel_city_person_person{
+    width: 100% !important;
+  }
+  .box_code_person_agentperson, .box_tel_person_agentperson, .box_fix_person_agentperson, .box_email_agentperson, .box_password_agentperson, .box_re_password_agentperson{
+    width: 100%;
+  }
+  .img-logo-footer{
+    margin-left: 15px;
+    margin-top: 20px;
+  }
+  .footer-index img{
+    width: 82px;
+    height: 22px;
+  }
+  .credits-footer{
+    font-size: 8px;
+    margin-top: 13px;
+  }
+  .credits-1,.credits-2{
+    margin-left: 10px;
+  }
+  .box_file_agentperson,.box_nameperson_agentperson,.box_lastnameperson_agentperson,
+  .box_cardnumber_agentoffice,.box_position_agentperson,.box_address_person_agentperson,
+  .sel_country_person_person,.sel_city_person_person,.box_code_person_agentperson,
+  .box_tel_person_agentperson,.box_fix_person_agentperson,.box_email_agentperson,.box_password_agentperson,.box_re_password_agentperson{
+    margin-top: 5px;
+  }
+  .hr_agent{
+    font-size: 14px;
+    margin-top: 15px;
+    width: 74%;
+  }
+  .box_file_agentoffice{
+    width: 50%;
+  }
+  .sel_country_office,.sel_city_office,.sel_country_person_office, .sel_city_person_office{
+    width: 100% !important;
+  }
+  .box_code_agentoffice, .box_tel_agentoffice, .box_fix_agentoffice,.box_code_person_agentoffice,
+  .box_tel_person_agentoffice, .box_fix_person_agentoffice, .box_email_agentoffice, .box_password_agentoffice, .box_re_password_agentoffice{
+    width: 100%;
+  }
+  body, html{
+    font-size: 14px;
+  }
+  #department_members_div{
+    padding-left: 0px;
+  }
+  #department_members_1,#department_members_2,#sex_1,#sex_2{
+    vertical-align: middle;
+  }
+  .txt_department,.txt_notdepartment{
+    vertical-align: bottom;
+  }
+  .box_file_agentoffice,.box_name_agentoffice,.box_branch_agentoffice,
+  .box_trade_agentoffice,.box_address_agentoffice,.sel_country_office,
+  .sel_city_office, .sel_country_person_office, .sel_city_person_office,
+  .box_code_agentoffice, .box_tel_agentoffice, .box_fix_agentoffice,
+  .box_code_person_agentoffice, .box_tel_person_agentoffice,
+  .box_fix_person_agentoffice, .box_email_agentoffice, .box_password_agentoffice,
+  .box_re_password_agentoffice,.box_nameperson_agentoffice,.box_position_agentoffice,
+  .box_address_person_agentoffice{
+    margin-top: 5px;
+  }
+}

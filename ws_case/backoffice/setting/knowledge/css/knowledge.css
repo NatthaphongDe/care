@@ -1,0 +1,127 @@
+.txt_pub{
+  color: #FFFFFF;
+  font-size: 14px;
+  background: #388E3C;
+  padding: 5px;
+  margin: 2px;
+}
+.txt_wai{
+  color: #FFFFFF;
+  font-size: 14px;
+  background: #FBB03B;
+  padding: 5px;
+  margin: 2px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.txt_hid{
+  color: #B3B3B3;
+  font-size: 14px;
+  background: #E6E6E6;
+  padding: 5px;
+  margin: 2px;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+.kl_box_status{    /* หนา */
+  border: 1px solid #EEEEEE;
+  border-radius: 5px;
+  background: #FAFAFA;
+  font-family: 'kanitregular';
+  font-weight: normal;
+  font-style: normal;
+}
+.kl_box_status_1{  /* บาง  */
+  border: 1px solid #E6E6E6;
+  border-radius: 5px;
+  background: #F2F2F2;
+  padding: 10px;
+  font-size: 16px;
+  color: #808080;
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+}
+.title_kl{
+  font-size: 16px;
+  font-family: 'kanitregular';
+  font-weight: normal;
+  font-style: normal;
+  padding: 0px;
+  margin: 0px;
+}
+.mr_10{
+  margin-top: 10px;
+}
+.box_gp_app .form-control{
+  color: #808080!important;
+}
+.btn_can_kl{
+  color: #B3B3B3!important;
+}
+.modal_view_app .no_border_footer{
+  border-top: 0px solid #dfe8f1;
+  padding-bottom: 15px;
+  padding-top: 0px;
+}
+.modal_view_app .box_gp_app{
+  margin-bottom:0px;
+}
+
+.modal_view_app .modal-body{
+  padding-bottom: 0px;
+}
+.th_user_edit_1{
+  /*width: 70px;
+  text-align: center;
+  vertical-align: text-top!important;*/
+}
+.th_user_edit_2{
+  /*width: 100px;
+  text-align: center;
+  vertical-align: text-top!important;*/
+}
+.th_user_edit .txt_no_edit_non{
+  padding-left: 5px;
+  padding-right: 5px;
+  display: inline-block;
+}
+.box_know .th_user_edit_2 {
+    text-align: center;
+}
+.cen_kl .th_user_edit_2{
+  text-align: center;
+}
+.ui-datepicker-next.ui-corner-all{
+  float: right;
+}
+div.ui-datepicker-title{
+  text-align: center;
+}
+label.ib_wt{
+      color: #FBB03B!important;
+}
+label.ib_pu{
+      color: #388E3C!important;
+}
+label.ib_hi{
+    color: #B3B3B3!important;
+}
+.kl_no_pd_p div.chosen-select-dissearch{
+ margin: 0px;
+ padding: 0px;
+}
+.txt_no_del_kl{
+  font-size: 16px;
+  color: #FF0000;
+}
+.kl_no_pd_p a.opt{
+    padding-left: 0;
+}
+.bootstrap-select.btn-group .dropdown-menu li a.opt {
+  padding-left: 0px;
+}
+div.kl_no_pd_p .dropdown-menu>li>a ,div.se .dropdown-menu>li>a {
+    padding: 1px 20px !important;
+}

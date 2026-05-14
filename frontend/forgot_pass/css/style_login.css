@@ -1,0 +1,140 @@
+
+textarea:focus, input:focus{
+    outline: none !important;
+}
+
+html, body{
+  background-image: url('../img/bg-login.png') !important;
+  background-size: cover !important;
+  padding: 0;
+  margin: 0;
+}
+
+/* Loading Spinner */
+.spinner{margin:0;width:70px;height:18px;margin:-35px 0 0 -9px;position:absolute;top:50%;left:50%;text-align:center}.spinner > div{width:18px;height:18px;background-color:#333;border-radius:100%;display:inline-block;-webkit-animation:bouncedelay 1.4s infinite ease-in-out;animation:bouncedelay 1.4s infinite ease-in-out;-webkit-animation-fill-mode:both;animation-fill-mode:both}.spinner .bounce1{-webkit-animation-delay:-.32s;animation-delay:-.32s}.spinner .bounce2{-webkit-animation-delay:-.16s;animation-delay:-.16s}@-webkit-keyframes bouncedelay{0%,80%,100%{-webkit-transform:scale(0.0)}40%{-webkit-transform:scale(1.0)}}@keyframes bouncedelay{0%,80%,100%{transform:scale(0.0);-webkit-transform:scale(0.0)}40%{transform:scale(1.0);-webkit-transform:scale(1.0)}}
+.content-box .content-box-wrapper{
+  padding: 0px;
+}
+
+.content-box.border-top{
+  border: none !important;
+  background: none;
+}
+#login-validation{
+  float: left;
+  width: 610px;
+  height: 460px;
+}
+#login-form{
+  float: left;
+  background: rgba(255,255,255,1);
+  background: -moz-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(207,216,220,1) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(100%, rgba(207,216,220,1)));
+  background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(207,216,220,1) 100%);
+  background: -o-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(207,216,220,1) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(207,216,220,1) 100%);
+  background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(207,216,220,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cfd8dc', GradientType=1 );
+
+  webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+
+  /*-webkit-border-top-left-radius: 10px;
+  -moz-border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
+
+  -webkit-border-bottom-left-radius: 10px;
+  -moz-border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;*/
+
+  width: 610px;
+  height: 460px;
+  padding-top: 80px;
+}
+
+#login-form h1{
+  font-family: 'kanitextra';
+  font-size: 36px;
+  font-weight: lighter;
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+.content-box-wrapper{
+  width: 1090px;
+  height: 510px;
+}
+
+.bg-login-form-right{
+  position: relative;
+  z-index: 2;
+  float: left;
+  width:420px;
+  margin-top: -24px;
+  margin-left: -10px;
+}
+
+.input-group .form-control:first-child, .input-group-addon:first-child, .input-group-btn:first-child > .btn, .input-group-btn:first-child > .dropdown-toggle, .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle){
+  border-radius:0;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #000;
+  margin-top: 20px;
+}
+
+.div.dataTables_filter input, .chosen-container-single .chosen-search input, .input, .form-control, .dataTables_length select, .chosen-container-multi, .bootstrap-timepicker-widget table td input, .ui-toolbar select, .ui-toolbar input{
+  box-shadow: none;
+  -webkit-box-shadow:none;
+}
+
+.input-group-lg > .form-control, .input-group-lg > .input-group-addon, .input-group-lg > .input-group-btn > .btn
+{
+  padding:0px;
+  font-family: 'kanit';
+  font-size: 16px;
+  font-weight: lighter;
+  font-style: normal;
+}
+.btn-green-alt{
+  background: #7cb342;
+  color: #ffffff;
+}
+.btn.btn-green-alt:hover, .btn.btn-green-alt:focus, .btn.btn-green-alt.focus{
+    background: #7cb342;
+    color: #ffffff;
+}
+
+.form-group-btn{
+  margin-top: 20px;
+}
+
+.checkbox-primary{
+  padding-top: 8px;
+}
+
+@media only screen and (max-width: 1024px){
+  /*#login-validation, #login-form{
+    width: 410px;
+  }*/
+}
+@media only screen and (max-width: 768px){
+  .content-box-wrapper,#login-validation, #login-form{
+    float: none;
+    width: auto;
+    height: auto;
+  }
+  .content-box .content-box-wrapper{
+    padding: 20px 60px;
+  }
+}
+@media only screen and (max-width: 460px){
+  .content-box-wrapper,#login-validation, #login-form{
+    float: none;
+    width: auto;
+    height: auto;
+  }
+  .content-box .content-box-wrapper{
+    padding: 20px;
+  }
+}

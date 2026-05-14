@@ -1,0 +1,137 @@
+body, html {
+    height: 100%;
+}
+.no-padding{
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.body-login{
+  background-image:url(../images/bg_Web_DITP.jpg);
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+  .footer-login{
+    background:url(../images/bg_login_foot.png) repeat center bottom;
+    text-align: center;
+  }
+
+  .footer-login img{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .center-login{
+    background:url(../images/bg_login_center.png) no-repeat;
+    position: absolute;
+    top: 50%;
+    margin-top: -360px;
+    left: 50%;
+    margin-left: -610px;
+    display: block;
+    width: 70%;
+    height: 70%;
+  }
+  .footer-login-xl{
+    position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+  }
+.credits-1{
+  color: #fff;
+  font-family: 'kanitextra';
+  font-weight: lighter;
+  font-style: normal;
+  margin-left: 25px;
+}
+.credits-2{
+  color: #fff;
+  font-family: 'kanitextra';
+  font-weight: lighter;
+  font-style: normal;
+  margin-left: 25px;
+}
+.img-logo-footer{
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 13px;
+  margin-bottom: 13px;
+}
+
+.credits-footer{
+  text-align: left;
+  display: inline-block;
+  vertical-align: middle;
+}
+.btn-facebook{
+  background-color: #4265A2;
+  color: #fff;
+}
+#form-login{
+  margin-top: 225px;
+}
+.txt-password,.btn-login{
+  margin-top: 10px;
+  font-family: 'kanitextra';
+  font-weight: lighter;
+  font-style: normal;
+}
+.txt-username,.txt-password{
+  opacity: 0.4;
+}
+.txt-username{
+  font-family: 'kanitextra';
+  font-weight: lighter;
+  font-style: normal;
+}
+.txt-forgot{
+  margin-top: 25px;
+}
+.txt-or{
+  margin-top: 15px;
+}
+.btn-facebook{
+  margin-top: 25px;
+  font-family: 'kanitextra';
+  font-weight: lighter;
+  font-style: normal;
+}
+.btn-facebook:hover{
+  color: #fff;
+}
+
+.txt-sign-up{
+  font-family: 'kanitextra';
+  font-weight: lighter;
+  font-style: italic;
+  color: #fff;
+  margin-top: 20px;
+}
+.txt-sign-up-2{
+  font-family: 'kanit';
+  font-weight: normal;
+  font-style: normal;
+  color: #fff;
+  margin-left: 10px;
+}
+.txt-forgot{
+  font-family: 'kanit';
+  font-weight: normal;
+  color: #fff;
+}
+a {
+  color: #fff;
+  text-decoration: underline;
+}
+a:hover {
+  color: #fff;
+  text-decoration: underline;
+}

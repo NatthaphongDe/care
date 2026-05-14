@@ -1,0 +1,102 @@
+
+
+.panel-timeline .title-hero{
+  padding-top: 0px;
+}
+
+.panel-timeline .title-hero span{
+  font-family: 'kanitregular';
+  font-size: 21px;
+  text-transform: none;
+  padding-top: 0px;
+}
+
+
+.panel-timeline .chat-box li{
+  border-bottom:1px solid #f2f2f2;
+  margin:0;
+  padding: 10px 0;
+}
+
+.panel-timeline .p-emp{
+  font-family: Tahoma;
+  font-weight: bold;
+  font-size: 12px;
+  color: #048f78;
+}
+
+.panel-timeline .p-date{
+  font-family: Tahoma;
+  font-size: 12px;
+  color: #999999;
+}
+
+.panel-timeline .p-message{
+  font-family: 'kanitregular';
+  font-size: 14px;
+  color: #6f6f73;
+}
+.panel-timeline .status-badge.img-circle{
+  width: 54px;
+  height: 54px;
+  overflow: hidden;
+  border-radius: 50%;
+  border:1px solid #ccc;
+  background: #fff;
+  float: none;
+}
+.panel-timeline .status-badge.img-circle img{
+    width: 100%;
+    height: 100%;
+}
+
+.panel-owner .title-hero{
+  padding-top: 0px;
+}
+.panel-owner .title-hero span{
+  font-family: 'kanitregular';
+  font-size: 21px;
+  text-transform: none;
+  padding-top: 0px;
+}
+.panel-owner .chat-box li{
+  margin:0;
+  padding: 10px 0;
+}
+
+.panel-owner .p-emp{
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-size: 14px;
+  color: #999999;
+}
+
+.panel-owner .p-emp-name{
+  font-family: 'kanitregular';
+  font-size: 16px;
+  color: #048f78;
+}
+.panel-owner .p-date{
+  font-family: Tahoma;
+  font-size: 12px;
+  color: #e6e6e6;
+}
+
+.panel-owner .p-message{
+  font-family: 'kanitregular';
+  font-size: 14px;
+  color: #6f6f73;
+}
+.panel-owner .status-badge.img-circle{
+  float: none;
+  width: 54px;
+  height: 54px;
+  overflow: hidden;
+  border-radius: 50%;
+  border:1px solid #ccc;
+  background: #fff;
+}
+.panel-owner .status-badge.img-circle img{
+  width: 100%;
+  height: 100%;
+}

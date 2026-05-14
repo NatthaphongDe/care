@@ -1,0 +1,384 @@
+body{
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 16px;
+  color: #000;
+}
+#page-content > .container{
+  width: 100%;
+  position: relative;
+}
+/*#page-content{
+  width: 85%;
+}*/
+.row-margin{
+  margin-top: 20px;
+}
+*{
+  text-align: left;
+}
+.row{
+  display: inline-block;
+  float: none;
+  width: 100%;
+  height: auto;
+}
+.fixed-table-toolbar{
+  display: inline-block;
+  float: none;
+  width: 100%;
+  height: auto;
+}
+#page-content{
+    float: none;
+    width: auto;
+    text-align: center;
+}
+.tabla_data .bootstrap-table .table:not(.table-condensed)>tbody>tr>td{
+  text-align: center;
+  color: #000;
+}
+.no-padding{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.issue_year1 button span{
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 16px;
+  color: #388E3C;
+}
+
+.issue_year2 button span{
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 16px;
+  color: #388E3C;
+}
+.cost_year1 button span{
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 16px;
+  color: #388E3C;
+}
+
+.cost_year2 button span{
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 16px;
+  color: #388E3C;
+}
+
+.blacklist_year1 button span{
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 16px;
+  color: #388E3C;
+}
+#quarter_txt button span{
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 16px;
+  color: #388E3C;
+}
+
+.months_issue1 button span{
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 16px;
+  color: #388E3C;
+}
+.months_issue2 button span{
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 16px;
+  color: #388E3C;
+}
+.months_cost1 button span{
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 16px;
+  color: #388E3C;
+}
+.months_cost2 button span{
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 16px;
+  color: #388E3C;
+}
+
+.months_blacklist1 button span{
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 16px;
+  color: #388E3C;
+}
+.txt_date_time{
+  color: #000;
+}
+.total-case-issue_txt,.total-case-issue,.total-case-cost_txt,.total-case-cost{
+  font-family: Tahoma !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+}
+.total-case-issue_txt,.total-case-cost_txt{
+  margin-left: 10px;
+}
+.open-issue,.total-waiting-issue,.total-new-issue,.total-pending-issue,.total-overduemain-issue,
+.total-overduesub-issue,.total-closesuccess-issue,.total-closecontinue-issue,.total-closereject-issue,.total-close-issue,.end-issue{
+  font-family: Tahoma !important;
+  font-weight: normal !important;
+  font-size: 14px !important;
+}
+
+.open-cost,.total-waiting-cost,.total-new-cost,.total-pending-cost,.total-overduemain-cost,
+.total-overduesub-cost,.total-closesuccess-cost,.total-closecontinue-cost,.total-closereject-cost,.total-close-cost,.end-cost{
+  font-family: Tahoma !important;
+  font-weight: normal !important;
+  font-size: 14px !important;
+}
+
+.tabla_data span{
+  /* font-family: 'Angsana New !important'; */
+  font-weight: normal !important;
+  font-size: 16px;
+  /*color: #000;*/
+  word-break: break-all;
+}
+.txt_timeover_sub{
+  color: #ED1C24;
+}
+.div_report{
+  color: #4D4D4D;
+}
+.div_report > .col-md-8 button span{
+  color: #388E3C;
+}
+.txt_hr_report{
+  font-family: 'kanitregular';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 18px;
+  color: #004D40;
+}
+
+.hr_report{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 24px;
+  color: #388E3C;
+}
+.div_report{
+  margin-bottom: 15px;
+}
+.txt_report{
+  margin-left: 5px;
+}
+.panel-report{
+  margin-top: 10px;
+}
+.btn-report-issue{
+  text-align: center;
+  margin-bottom: 30px;
+}
+.btn-report-cost{
+  text-align: center;
+  margin-bottom: 30px;
+}
+.btn-report-blacklist{
+  text-align: center;
+  margin-bottom: 30px;
+}
+.report_search{
+  width: 200px;
+}
+.filter_report{
+  display: inline-block;
+  float: right;
+  margin-top: 10px;
+}
+.btn-click-search {
+  cursor: pointer;
+}
+.btn-filter{
+  background-color: #4D4D4D;
+  color: #fff;
+}
+.fixed-table-container tbody td .th-inner, .fixed-table-container thead th .th-inner{
+  color: #388E3C;
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+}
+.table > thead:first-child > tr:first-child > th{
+  background-color: #fff;
+}
+.fixed-table-container thead th .both {
+    background-image: url(../../img/arrow.png)!important;
+}
+.fixed-table-container thead th .asc {
+    background-image: url(../../img/arrow_asc.png)!important;
+}
+.fixed-table-container thead th .desc {
+    background-image: url(../../img/arrow_desc.png)!important;
+}
+.date_issue > .col-md-1{
+  width: 12%;
+}
+.date_issue > .col-md-3{
+  width: 21%;
+}
+.date_cost > .col-md-1{
+  width: 12%;
+}
+.date_cost > .col-md-3{
+  width: 21%;
+}
+.radio, .checkbox,.radio + .radio, .checkbox + .checkbox{
+  margin-top: 0px;
+}
+.Close1{
+  color: #39B54A;
+}
+.Close2{
+  color: #F7931E;
+}
+.Close3{
+  color: #ED1C24;
+}
+.overdue_sub_process,.overdue_main{
+  color: #ED1C24;
+}
+.Pending{
+  color: #FBB03B;
+}
+.time_issue{
+  width: 250px;
+}
+.time_over_xr{
+  color: #ED1C24;
+  float: left;
+  font-size: 14px;
+  margin-left: 15px;
+}
+.txt_over{
+  font-size: 14px;
+  float: left;
+  margin-left: 15px;
+}
+.circle_report{
+  font-size: 10px !important;
+}
+.div_status_report{
+  width: 160px;
+}
+.name_report{
+  width: 160px;
+}
+.process_report{
+  width: 200px;
+}
+.complaint_report{
+  width: 300px;
+}
+.product_report{
+  width: 130px;
+}
+.caseDtl_title_report{
+  width: 220px;
+}
+.date_report{
+  width: 110px;
+}
+.total-report span{
+  font-family: 'kanit';
+  font-weight: lighter;
+  font-style: normal;
+  font-size: 14px;
+}
+@media (max-width:1310px) {
+  .total-report{
+    position: relative !important;
+  }
+}
+@media (max-width: 1024px) {
+  .modal_chk_cost,.modal_chk_issue{
+    width: 950px !important;
+  }
+  .fixed-table-container{
+    margin-top: 25px;
+  }
+  .date_issue > .col-md-1{
+    width: 15%;
+  }
+
+  .date_issue > .col-md-3{
+    width: 25%;
+  }
+}
+@media (max-width: 768px) {
+  .modal_chk_cost,.modal_chk_issue{
+    width: 750px !important;
+  }
+  .date_cost > .col-md-1{
+    width: 17%;
+  }
+  .date_issue > .col-md-1{
+    width: 17%;
+  }
+  .date_cost > .col-md-3{
+    width: 30%;
+  }
+  .date_issue > .col-md-3{
+    width: 30%;
+  }
+}
+@media (max-width: 425px) {
+  .modal_chk_cost,.modal_chk_issue{
+    width: 405px !important;
+  }
+  .date_cost > .col-xs-12{
+    width: 100%;
+  }
+  .date_issue > .col-xs-12{
+    width: 100%;
+  }
+.report_search{
+  width: 100%;
+}
+.total-report{
+  position: relative !important;
+}
+.fixed-table-container{
+  margin-top: 10px;
+}
+.dropdown-menu{
+  position: absolute;
+}
+}
+@media (max-width: 375px) {
+  .modal_chk_cost,.modal_chk_issue{
+    width: 355px !important;
+  }
+}
+@media (max-width: 320px) {
+  .modal_chk_cost,.modal_chk_issue{
+    width: 300px !important;
+  }
+}

@@ -1,0 +1,23 @@
+ul.spy {
+    /*background-color:yellow;*/
+    /*margin:10px auto 0px;
+    padding:0;*/
+    position:relative;
+    /*width:60%;*/
+}
+ul.spy li {
+    /*list-style:none;*/
+    /*height:30px;
+    margin:0px 0px 2px;*/
+    /*background-color:black;*/
+    /*font:normal 11px verdana,Arial,Sans-Serif;*/
+    color:white;
+    overflow: hidden;
+    padding-left: 0px;
+}
+.spyWrapper {
+    padding-top: 20px;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}

@@ -1,0 +1,325 @@
+.Newpanel-body {
+  width: 100%;
+  height: auto;
+  background: #fafafa;
+  border: 1px solid #eeeeee;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+  border-radius: 7px;
+  padding: 15px;
+}
+.Newpanel-body .form-check {
+  display: block;
+  min-height: 1.5rem;
+  margin-bottom: 0.125rem;
+}
+.Newpanel-body input {
+  border-radius: 0.4rem;
+}
+.Newpanel-body input[type="checkbox"] {
+  margin: 0;
+  width: 20px;
+  height: 30px;
+}
+.Newpanel-body label {
+  margin-bottom: 0;
+  border-radius: 1rem;
+}
+.Newpanel-body .flexcenter {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.Newpanel-body .flexcenternew {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.Newpanel-body .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.5rem;
+}
+.Newpanel-body .card-body {
+  flex: 1 1 auto;
+  padding: 1rem 1rem 0 1rem;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+}
+.Newpanel-body .Underlineborder {
+  padding: 10px 0 0 0;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #eeeeee;
+}
+.Newpanel-body .card-content {
+  position: relative;
+}
+.card-content .row {
+  margin-bottom: 1rem;
+}
+.card-content .form-select {
+  padding: 5px 8px;
+  border-radius: 0.4rem;
+}
+.card-content .textend {
+  text-align: end;
+}
+.card-content .form-select {
+  display: block;
+  width: 20%;
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+  -moz-padding-start: calc(0.75rem - 3px);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #048f78;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+#corporatenumber {
+  width: 35%;
+}
+
+.Newpanel-header{
+  width: 100%;
+  height: auto;
+  background: #fafafa;
+  border: 1px solid #eeeeee;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+  border-radius: 7px;
+  padding: 15px 15px 5px 15px;
+  margin-bottom: 10px;
+}
+
+.Newpanel-header .bi-caret-up-square,
+.Newpanel-header .bi-caret-down-square-fill{
+  font-size: 25px;
+  float: right;
+}
+
+.Newpanel-header .collapse{
+  padding: 5px 15px 5px 15px;
+}
+
+.Newpanel-header .collapse .card-body{
+  padding: 1rem 0;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+}
+
+.Newpanel-header .flexcenter{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* gap: 10px; */
+}
+
+.Newpanel-header .flexcenternew{
+  display: flex;
+  justify-content: flex-start;
+  /* gap: 10px; */
+}
+
+.Newpanel-header input{
+  border-radius: 0.4rem;
+}
+
+.Newpanel-header .collapse{
+  visibility: hidden;
+}
+
+.Newpanel-header .collapse.in{
+  visibility: visible;
+  display: block;
+}
+
+/* .panel-body-outer-bg2{
+  padding: 0;
+} */
+.panel-body-bg2{
+  background: #fafafa;
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.panel-body-bg2 .checker{
+  margin-top:10px;
+}
+
+.panel-body-bg2 .checkbox label{
+  display: inherit;
+  padding-left: 0px;
+}
+
+.panel-body-bg2 .radio input[type="radio"],
+.panel-body-bg2 .radio-inline input[type="radio"],
+.panel-body-bg2 .checkbox input[type="checkbox"],
+.panel-body-bg2 .checkbox-inline input[type="checkbox"]{
+  margin-left: 0px;
+}
+
+
+
+.panel#panel-his-menu{
+  margin-bottom: 10px;
+}
+
+.panel-pad-20{
+  padding: 20px;
+}
+.panel-pad-10{
+  padding: 10px;
+}
+
+.form-group .control-label.required::after, label.required::after {
+  content:" *";
+  color:red;
+}
+.form-group .selector .glyph-icon{
+  background: #fff;
+  color:#048f78;
+  border-left: none;
+  font-size: 20px;
+}
+.frm_case_open .form-group .selector, .frm_case_open .form-group .selector select{
+  background:#fff;
+
+}
+.frm_case_open .form-group .selector .glyph-icon{
+  background: #fff;
+}
+.form-horizontal .form-group{
+  margin-right: 0px;
+  margin-left: 0px;
+}
+.form-horizontal .control-label{
+  font-family: '"Helvetica Neue",Helvetica,Arial,sans-serif';
+  font-weight: lighter;
+  font-size: 16px;
+  text-align: left;
+}
+.control-label-r{
+  text-align: right !important;
+}
+
+div.dataTables_filter input,
+.input,
+.form-control,
+.dataTables_length select,
+.bootstrap-timepicker-widget table td input,
+.ui-toolbar select,
+.ui-toolbar input,
+div.selector{
+  border:#bfbfbf solid 1px;
+  font-family: '"Helvetica Neue",Helvetica,Arial,sans-serif';
+  font-weight: lighter;
+  font-size: 16px;
+}
+
+select{
+  height: 34px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.control-label {
+  font-weight: 100;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.no-gutter {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* .com-box {
+  height: 500px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+} */
+
+.flexcenter {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.com-box {
+  padding: 1rem 0;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+  margin: 5px 15px;
+}
+
+.list_file_name p {
+  width: 100%;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* .iti__selected-flag {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+} */
+
+.iti__flag-container {
+  padding: 0 !important;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.flex1 {
+  width: 20%;
+}
+.flex2 {
+  width: 83%;
+}
+
+.iti__flag-container {
+  left: -60px !important;
+}
+
+.iti {
+  width: 100% !important;
+}
+
+.iti--allow-dropdown input, .iti--allow-dropdown input[type=text] {
+  padding-left: 12px !important;
+}
+
+.radio_class {
+  width: 25px;
+}
+.radio_flex {
+  display: flex;
+  align-items: center;
+}
